@@ -38,7 +38,9 @@ Network::Network(const std::string& franka_address,
     udp_port_ = udp_socket_.address().port();
   } catch (const Poco::Net::ConnectionRefusedException& e) {
     throw NetworkException(
-        "libfranka: Connection to FCI refused. Please install FCI feature or enable FCI mode in Desk."s);
+      // Fix: more clear exception message depending on connecting to the robot arm (port 1337) or gripper on port 1338.
+        (franka_port == 1337) ? "libfranka: Connection to FCI refused. Please install FCI feature or enable FCI mode in Desk."s : 
+        "libfranka: Connection to FCI gripper refused. Please Please check gripper."s);
   } catch (const Poco::Net::NetException& e) {
     throw NetworkException("libfranka: Connection error: "s + e.what());
   } catch (const Poco::TimeoutException& e) {
