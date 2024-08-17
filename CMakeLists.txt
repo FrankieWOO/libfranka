@@ -110,7 +110,7 @@ target_include_directories(franka PUBLIC
 target_link_libraries(franka PRIVATE
   Poco::Foundation
   Poco::Net
-  Eigen3::Eigen3
+  Eigen3::Eigen
   Threads::Threads
   libfranka-common
 )

@@ -20,7 +20,7 @@ add_library(examples_common STATIC
   examples_common.cpp
 )
 
-target_link_libraries(examples_common PUBLIC Franka::Franka Eigen3::Eigen3)
+target_link_libraries(examples_common PUBLIC Franka::Franka Eigen3::Eigen)
 
 set(EXAMPLES
   cartesian_impedance_control
@@ -43,7 +43,7 @@ set(EXAMPLES
 
 foreach(example ${EXAMPLES})
   add_executable(${example} ${example}.cpp)
-  target_link_libraries(${example} Franka::Franka examples_common Eigen3::Eigen3)
+  target_link_libraries(${example} Franka::Franka examples_common Eigen3::Eigen)
 endforeach()
 
 target_link_libraries(joint_impedance_control Threads::Threads)

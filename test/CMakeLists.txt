@@ -18,7 +18,7 @@ set(TEST_DEPENDENCIES
   ${GTEST_LIBRARIES}
   Poco::Foundation
   Poco::Net
-  Eigen3::Eigen3
+  Eigen3::Eigen
   Threads::Threads
   franka
   libfranka-common

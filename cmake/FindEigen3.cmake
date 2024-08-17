@@ -7,9 +7,9 @@ find_package_handle_standard_args(Eigen3
   REQUIRED_VARS EIGEN3_INCLUDE_DIRS
 )
 
-if(NOT TARGET Eigen3::Eigen3)
-  add_library(Eigen3::Eigen3 INTERFACE IMPORTED)
-  set_target_properties(Eigen3::Eigen3 PROPERTIES
+if(NOT TARGET Eigen3::Eigen)
+  add_library(Eigen3::Eigen INTERFACE IMPORTED)
+  set_target_properties(Eigen3::Eigen PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES ${EIGEN3_INCLUDE_DIRS}
     INTERFACE_COMPILE_DEFINITIONS "${EIGEN3_DEFINITIONS}"
   )
