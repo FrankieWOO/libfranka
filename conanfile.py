@@ -19,8 +19,7 @@ class libfrankaRecipe(ConanFile):
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "src/*", "include/*", "common/*", "test/*", "examples/*", "cmake/*"
-
-    #requires = "poco/1.13.3", "eigen/3.4.0"
+    tool_requires = "cmake/[>=3.22]"
 
     def requirements(self):
         self.requires("poco/1.13.3")
@@ -38,7 +37,7 @@ class libfrankaRecipe(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure(variables={ "BUILD_TESTS":"OFF" })
+        cmake.configure(variables={ "BUILD_TESTS":"OFF", "CMAKE_BUILD_TYPE":"Release" })
         cmake.build()
 
     def package(self):
@@ -46,4 +45,9 @@ class libfrankaRecipe(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["libfranka"]
+        self.cpp_info.libs = ["franka"]
+        self.cpp_info.set_property("cmake_file_name", "Franka")
+        self.cpp_info.set_property("cmake_target_name", "Franka::Franka")
+        self.cpp_info.set_property("pkg_config_name", "Franka")
+        self.cpp_info.libdirs = ["lib"]
+        self.cpp_info.includedirs = ["include"]
